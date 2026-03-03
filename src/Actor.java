@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 public class Actor extends Person{
-    public int height;
+    private int height;
 
 
     public Actor(String name, String surname, Gender gender, int height) {
@@ -15,24 +15,19 @@ public class Actor extends Person{
 
     @Override
     public String toString() {
-        return "Actor{" +
-                "height=" + height +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                '}';
+        return super.toString() +
+                ", height=" + height;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Actor actor = (Actor) o;
-        return height == actor.height &&
-                name.equals(actor.name) &&
-                surname.equals(actor.surname);
+        return height == actor.height;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode() + surname.hashCode() + height;
+        return Objects.hash(super.hashCode(), height);
     }
 }
